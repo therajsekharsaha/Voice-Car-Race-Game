@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>web game</title>
+</head>
+
+<body>
+    <div id="game">
+        <div id="bluecar">
+            <p align="center"><img src="car3.png" class="enemy"></p>
+        </div>
+        <div id="racecar">
+            <p align="center"><img src="main.png" class="user"></p>
+        </div>
+    </div>
+    <!-- <div id="stop-btn">
+        <button id="stopgame" onclick="">stop</button>
+    </div> -->
+    <div id="result">
+        <h1>Game Over</h1>
+        <p id="score"></p>
+        <button id="btn" onclick="location.reload()">Restart</button>
+    </div>
+    <!-- <audio src="click.wav" id="clicksound"></audio> -->
+    <script src="script.js"></script>
+</body>
+
+
+<!-- game voice controle -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+<script>
+    if (annyang) {
+        // Let's define a command.
+        const commands = {
+            'right': () => {
+                // your code here
+                var raceCarLeft = parseInt(window.getComputedStyle(raceCar).getPropertyValue("left"))
+                if (raceCarLeft < 120) { raceCar.style.left = (raceCarLeft + 120) + "px" }
+            }
+        };
+        // Add our commands to annyang
+        annyang.addCommands(commands);
+
+        // Start listening.
+        annyang.start();
+    }
+    if (annyang) {
+        const commands = {
+            'left': () => {
+                var raceCarLeft = parseInt(window.getComputedStyle(raceCar).getPropertyValue("left"))
+                if (raceCarLeft > 0) { raceCar.style.left = (raceCarLeft - 120) + "px" }
+            }
+        };
+
+        // Add our commands to annyang
+        annyang.addCommands(commands);
+
+        // Start listening.
+        annyang.start();
+    }
+
+    if (annyang) {
+        // Let's define a command.
+        const commands = {
+            'stop': () => { alert('press ok to continue...!'); }
+        };
+
+        // Add our commands to annyang
+        annyang.addCommands(commands);
+
+        // Start listening.
+        annyang.start();
+    }
+</script>
+
+</html>
